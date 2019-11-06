@@ -168,6 +168,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ItemTypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PartsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductLinkTextsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductTypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SectionsController.cs" />
+    <Compile Include="Areas\Admin\Models\SmallButtonModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -206,6 +212,37 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Sections\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sections\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sections\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sections\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sections\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_BackToListButtonPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_EditButtonPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_CreateButtonPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_SmallButtonPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_TableButtonPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Parts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Parts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Parts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Parts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Parts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ItemTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ItemTypes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ItemTypes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ItemTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ItemTypes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductLinkTexts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductLinkTexts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductLinkTexts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductLinkTexts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductLinkTexts\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -255,8 +292,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
