@@ -27,12 +27,15 @@ namespace Memberships.Entities
         public string Url { get; set; }
 
         [MaxLength(1024)]
+        [DisplayName("Image URL")]
         public string ImageUrl { get; set; }
 
         [AllowHtml]
         public string HTML { get; set; }
 
         [DefaultValue(0)]
+        [Range(0, Int32.MaxValue)]
+        [DisplayName("Wait Days")]
         public int WaitDays { get; set; }
 
         public string HTMLShort
@@ -45,7 +48,7 @@ namespace Memberships.Entities
         public int ItemTypeId { get; set; }
         public int SectionId { get; set; }
         public int PartId { get; set; }
-        public int isFree { get; set; }
+        public bool isFree { get; set; }
 
         [DisplayName("Item Type")]
         public ICollection<ItemType> ItemTypes { get; set; }
