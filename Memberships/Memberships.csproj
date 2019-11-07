@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ItemTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\PartsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductLinkTextsController.cs" />
@@ -188,6 +189,8 @@
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Part.cs" />
     <Compile Include="Entities\Section.cs" />
+    <Compile Include="Extensions\ICollectionExtensions.cs" />
+    <Compile Include="Extensions\ReflectionsExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -243,6 +246,11 @@
     <Content Include="Areas\Admin\Views\ProductLinkTexts\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ProductLinkTexts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductLinkTexts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Items\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Items\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Items\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Items\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Items\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
