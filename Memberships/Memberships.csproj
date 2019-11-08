@@ -47,8 +47,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,12 +173,15 @@
     <Compile Include="Areas\Admin\Controllers\ItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ItemTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\PartsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductLinkTextsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SectionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubscriptionsController.cs" />
     <Compile Include="Areas\Admin\Extentions\ConverionExtensions.cs" />
+    <Compile Include="Areas\Admin\Models\EditButtonModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductItemModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductModel.cs" />
     <Compile Include="Areas\Admin\Models\SmallButtonModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -265,6 +270,12 @@
     <Content Include="Areas\Admin\Views\Subscriptions\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Subscriptions\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Subscriptions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductItems\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductItems\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductItems\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductItems\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductItems\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_EditButtonDetailPartial.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
