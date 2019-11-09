@@ -10,11 +10,11 @@ namespace Memberships.Models
     public class UserViewModel
     {
         [DisplayName("User Id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [EmailAddress]
-        public int Email { get; set; }
+        public string Email { get; set; }
 
         [Display(Name = "First Name")]
         [StringLength(30, ErrorMessage = "The {0} must be at least {1} character long")]
