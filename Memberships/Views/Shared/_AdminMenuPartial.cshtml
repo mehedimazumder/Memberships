@@ -1,30 +1,33 @@
-﻿<li class="dropdown" data-admin-menu>
-    <a href="#">
-        Admin
-        <span class="glyphicon glyphicon-chevron-down"></span>
-    </a>
-    <ul class="dropdown-menu" role="menu">
-        <li class="dropdown-header">Minor Entities</li>
-        <li class="divider" />
-        <li><a href="/Admin/Sections">&nbsp;&nbsp;Section</a></li>
-        <li><a href="/Admin/Parts">&nbsp;&nbsp;Part</a></li>
-        <li><a href="/Admin/ItemTypes">&nbsp;&nbsp;Item Type</a></li>
-        <li><a href="/Admin/ProductTypes">&nbsp;&nbsp;Product Type</a></li>
-        <li><a href="/Admin/ProductLinkTexts">    &nbsp;&nbsp;Product Link Text</a></li>
-        <li class="divider" />
-        <li class="dropdown-header">Major Entities</li>
-        <li class="divider" />
-        <li><a href="/Admin/Items">&nbsp;&nbsp;Item</a></li>
-        <li><a href="/Admin/Products">&nbsp;&nbsp;Product</a></li>
-        <li><a href="/Admin/Subscriptions">    &nbsp;&nbsp;Subscription</a></li>
-        <li class="divider" />
-        <li class="dropdown-header">Connector Entities</li>
-        <li class="divider" />
-        <li><a href="/Admin/ProductItems">&nbsp;&nbsp;Product Item</a></li>
-        <li><a href="/Admin/SubscriptionProducts">    &nbsp;&nbsp;Subscription Product</a></li>
-        <li class="divider" />
-        <li class="dropdown-header">Users & Subscriptions</li>
-        <li class="divider" />
-        <li><a href="/Account">    &nbsp;&nbsp;Users & Subscriptions</a></li>
-    </ul>
-</li>
+﻿@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <li class="dropdown" data-admin-menu>
+        <a href="#">
+            Admin
+            <span class="glyphicon glyphicon-chevron-down"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">Minor Entities</li>
+            <li class="divider"/>
+            <li><a href="/Admin/Sections">&nbsp;&nbsp;Section</a></li>
+            <li><a href="/Admin/Parts">&nbsp;&nbsp;Part</a></li>
+            <li><a href="/Admin/ItemTypes">&nbsp;&nbsp;Item Type</a></li>
+            <li><a href="/Admin/ProductTypes">&nbsp;&nbsp;Product Type</a></li>
+            <li><a href="/Admin/ProductLinkTexts">&nbsp;&nbsp;Product Link Text</a></li>
+            <li class="divider"/>
+            <li class="dropdown-header">Major Entities</li>
+            <li class="divider"/>
+            <li><a href="/Admin/Items">&nbsp;&nbsp;Item</a></li>
+            <li><a href="/Admin/Products">&nbsp;&nbsp;Product</a></li>
+            <li><a href="/Admin/Subscriptions">&nbsp;&nbsp;Subscription</a></li>
+            <li class="divider"/>
+            <li class="dropdown-header">Connector Entities</li>
+            <li class="divider"/>
+            <li><a href="/Admin/ProductItems">&nbsp;&nbsp;Product Item</a></li>
+            <li><a href="/Admin/SubscriptionProducts">&nbsp;&nbsp;Subscription Product</a></li>
+            <li class="divider"/>
+            <li class="dropdown-header">Users & Subscriptions</li>
+            <li class="divider"/>
+            <li><a href="/Account">&nbsp;&nbsp;Users & Subscriptions</a></li>
+        </ul>
+    </li>
+}
