@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Ajax.Utilities;
 
 namespace Memberships.Models
 {
@@ -79,6 +81,10 @@ namespace Memberships.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DisplayName("First Name")]
+        public string FirstName { get; set; }
     }
 
     public class ResetPasswordViewModel
