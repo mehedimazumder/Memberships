@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Memberships.Entities;
 using Memberships.Extensions;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -507,8 +509,8 @@ namespace Memberships.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Register
+        
+        // POST: /Account/Create
         [HttpPost]
         [Authorize (Roles = "Admin")]
         [ValidateAntiForgeryToken]
@@ -537,6 +539,30 @@ namespace Memberships.Controllers
             return View(model);
         }
 
-       
+        //GET /Account/Edit?
+        public async Task<ActionResult> Edit(string userId)
+        {
+            if (userId == null || userId.Equals(string.Empty))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ApplicationUser user = await UserManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new UserViewModel
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                Id = user.Id,
+                Password = user.PasswordHash
+            };
+
+            return View(model);
+        }
+
     }
 }
