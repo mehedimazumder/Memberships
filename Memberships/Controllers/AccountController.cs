@@ -660,5 +660,73 @@ namespace Memberships.Controllers
             return View(model);
         }
 
+        //GET Account/Subscriptions
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Subscriptions(string userId)
+        {
+            if (userId == null || userId.Equals(string.Empty))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+           
+            var model = new UserSubscriptionViewModel();
+            var db = new ApplicationDbContext();
+            model.UserSubscriptions = await
+                (from us in db.UserSubscriptions
+                    join s in db.Subscriptions on us.SubscriptionId equals s.Id
+                    where us.UserId.Equals(userId)
+                    select new UserSubscriptionModel
+                    {
+                        Id = us.SubscriptionId,
+                        StartDate = us.StartDate,
+                        EndDate = us.EndDate,
+                        Description = s.Description,
+                        RegistrationCode = s.RegistrationCode,
+                        Title = s.Title
+                    }).ToListAsync();
+
+            var ids = model.UserSubscriptions.Select(s => s.Id);
+
+            model.Subscriptions = await db.Subscriptions.Where(s => !ids.Contains(s.Id)).ToListAsync();
+            model.DisableDropDown = model.Subscriptions.Count.Equals(0);
+            model.UserId = userId;
+            return View(model);
+        }
+
+        //POST Account/Subscriptions
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Delete(UserViewModel model)
+        {
+            try
+            {
+                if (model == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    var user = await UserManager.FindByIdAsync(model.Id);
+                    if (user != null)
+                    {
+                        var result = await UserManager.DeleteAsync(user);
+                        if (result.Succeeded)
+                        {
+                            var db = new ApplicationDbContext();
+                            var subscriptions = db.UserSubscriptions.Where(u => u.UserId.Equals(model.Id));
+                            db.UserSubscriptions.RemoveRange(subscriptions);
+                            await db.SaveChangesAsync();
+                            return RedirectToAction("Index", "Account");
+                        }
+                        AddErrors(result);
+                    }
+                }
+            }
+            catch { }
+            return View(model);
+        }
+
     }
 }

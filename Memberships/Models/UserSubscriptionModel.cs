@@ -23,5 +23,6 @@ namespace Memberships.Models
         public string RegistrationCode { get; set; }
 
         public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }
