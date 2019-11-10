@@ -726,5 +726,32 @@ namespace Memberships.Controllers
             return RedirectToAction("Subscriptions", "Account", new {userId = model.UserId});
         }
 
+        // Account/RemoveUserSubscription
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> RemoveUserSubscription(string userId, int subscriptionId)
+        {
+            try
+            {
+                if (userId == null || userId.Length.Equals(0) || subscriptionId <= 0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                if (ModelState.IsValid)
+                {
+
+                    var db = new ApplicationDbContext();
+                    var subscription = db.UserSubscriptions.Where(
+                        us => us.UserId.Equals(userId) && us.SubscriptionId.Equals(subscriptionId));
+                    db.UserSubscriptions.RemoveRange(subscription);
+                    await db.SaveChangesAsync();
+
+                }
+            }
+            catch { }
+
+            return RedirectToAction("Subscriptions", "Account", new { userId = userId });
+        }
+
     }
 }
