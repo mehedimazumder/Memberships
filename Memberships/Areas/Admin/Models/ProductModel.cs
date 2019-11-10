@@ -36,7 +36,7 @@ namespace Memberships.Areas.Admin.Models
             {
                 return ProductTypes == null || ProductTypes.Count.Equals(0)
                     ? String.Empty
-                    : ProductTypes.First(pt => pt.Id == ProductTypeId).Title;
+                    : ProductTypes.FirstOrDefault(pt => pt.Id == ProductTypeId)?.Title;
             } }
 
         public string ProductLinkText
@@ -45,7 +45,7 @@ namespace Memberships.Areas.Admin.Models
             {
                 return ProductLinkTexts == null || ProductLinkTexts.Count.Equals(0)
                     ? String.Empty
-                    : ProductLinkTexts.First(pt => pt.Id == ProductLinkTextId).Title;
+                    : ProductLinkTexts.FirstOrDefault(pt => pt.Id == ProductLinkTextId)?.Title;
             }
         }
     }

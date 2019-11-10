@@ -19,13 +19,14 @@ namespace Memberships.Areas.Admin.Extentions
         public static async Task<IEnumerable<ProductModel>> Convert(this IEnumerable<Product> products,
             ApplicationDbContext db)
         {
-            if (products.Count().Equals(0))
+            var enumerable = products.ToList();
+            if (enumerable.Count().Equals(0))
                 return new List<ProductModel>();
 
             var links = await db.ProductLinkTexts.ToListAsync();
             var types= await db.ProductTypes.ToListAsync();
 
-            return from product in products
+            return from product in enumerable
                 select new ProductModel
                 {
                     Id = product.Id,
