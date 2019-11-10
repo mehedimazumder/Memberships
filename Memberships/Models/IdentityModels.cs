@@ -47,5 +47,6 @@ namespace Memberships.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }
