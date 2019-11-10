@@ -697,7 +697,7 @@ namespace Memberships.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(UserViewModel model)
+        public async Task<ActionResult> Subscriptions(UserSubscriptionViewModel model)
         {
             try
             {
@@ -708,24 +708,22 @@ namespace Memberships.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var user = await UserManager.FindByIdAsync(model.Id);
-                    if (user != null)
-                    {
-                        var result = await UserManager.DeleteAsync(user);
-                        if (result.Succeeded)
-                        {
+                   
                             var db = new ApplicationDbContext();
-                            var subscriptions = db.UserSubscriptions.Where(u => u.UserId.Equals(model.Id));
-                            db.UserSubscriptions.RemoveRange(subscriptions);
+                            db.UserSubscriptions.Add(new UserSubscription
+                            {
+                                UserId = model.UserId,
+                                SubscriptionId = model.SubscriptionId,
+                                StartDate = DateTime.Now,
+                                EndDate = DateTime.MaxValue
+                            });
                             await db.SaveChangesAsync();
-                            return RedirectToAction("Index", "Account");
-                        }
-                        AddErrors(result);
-                    }
+
                 }
             }
             catch { }
-            return View(model);
+
+            return RedirectToAction("Subscriptions", "Account", new {userId = model.UserId});
         }
 
     }
