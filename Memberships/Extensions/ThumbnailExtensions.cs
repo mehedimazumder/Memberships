@@ -11,27 +11,29 @@ namespace Memberships.Extensions
 {
     public static class ThumbnailExtensions
     {
-        public static async Task<List<int>> GetSubscriptionIdsAsync(string userId = null, ApplicationDbContext db = null)
+        private static async Task<List<int>> GetSubscriptionIdsAsync(
+            string userId = null, ApplicationDbContext db = null)
         {
             try
             {
-                if(userId == null) return new List<int>();
-                if(db == null) db = ApplicationDbContext.Create();
+                if (userId == null) return new List<int>();
+                if (db == null) db = ApplicationDbContext.Create();
 
                 return await (
                     from us in db.UserSubscriptions
                     where us.UserId.Equals(userId)
                     select us.SubscriptionId).ToListAsync();
             }
-            catch 
+            catch
             {
-                
             }
+
             return new List<int>();
         }
 
         public static async Task<IEnumerable<ThumbnailModel>> GetProductThumbnailsAsync(
-            this List<ThumbnailModel> thumbnails, string userId = null, ApplicationDbContext db = null)
+            this List<ThumbnailModel> thumbnails, string userId = null,
+            ApplicationDbContext db = null)
         {
             try
             {
@@ -57,13 +59,15 @@ namespace Memberships.Extensions
                         TagText = plt.Title,
                         ContentTag = pt.Title
                     }).ToListAsync();
+
             }
             catch
             {
-                
             }
 
             return thumbnails.Distinct(new ThumbnailEqualityComparer()).OrderBy(o => o.Title);
         }
+
     }
 }
+    
