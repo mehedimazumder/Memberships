@@ -63,7 +63,7 @@ namespace Memberships.Extensions
                 
             }
 
-            return thumbnails.Distinct(new ThumbnailEqualityComparer());
+            return thumbnails.Distinct(new ThumbnailEqualityComparer()).OrderBy(o => o.Title);
         }
     }
 }
