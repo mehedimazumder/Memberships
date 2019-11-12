@@ -63,7 +63,7 @@ namespace Memberships.Extensions
                 join sp in db.SubscriptionProducts on pi.ProductId equals sp.ProductId
                 join us in db.UserSubscriptions on sp.SubscriptionId equals us.SubscriptionId
                 where i.SectionId.Equals(sectionId) &&
-                      i.ItemTypeId.Equals(itemTypeId) &&
+                     // i.ItemTypeId.Equals(itemTypeId) &&
                       pi.ProductId.Equals(productId) &&
                       us.UserId.Equals(userId)
                 orderby i.PartId
@@ -72,20 +72,22 @@ namespace Memberships.Extensions
                     ItemId = i.Id,
                     Description = i.Description,
                     Title = i.Title,
-                    Link = "/ProductContent/Content/" + pi.ProductId + "/" + i.Id,
+                    Link = it.Title.Equals("Download")? i.Url : "/ProductContent/Content/" + pi.ProductId + "/" + i.Id,
                     ImageUrl = i.ImageUrl,
                     ReleaseDate = DbFunctions.CreateDateTime(us.StartDate.Value.Year,
                         us.StartDate.Value.Month, us.StartDate.Value.Day + i.WaitDays, 0, 0, 0),
                     IsAvailable = DbFunctions.CreateDateTime(today.Year, today.Month, today.Day, 0, 0, 0)
                                   >= DbFunctions.CreateDateTime(us.StartDate.Value.Year,
-                                      us.StartDate.Value.Month, us.StartDate.Value.Day + i.WaitDays, 0, 0, 0)
+                                      us.StartDate.Value.Month, us.StartDate.Value.Day + i.WaitDays, 0, 0, 0),
+                    IsDownload = it.Title.Equals("Download")
 
                 }).ToListAsync();
 
             return items;
         }
 
-        public static async Task<ContentViewModel> GetContentAsync(int productId, int itemId)
+        public static async Task<ContentViewModel> GetContentAsync(
+            int procuctId, int itemId)
         {
             var db = ApplicationDbContext.Create();
             return await (
@@ -94,10 +96,10 @@ namespace Memberships.Extensions
                 where i.Id.Equals(itemId)
                 select new ContentViewModel
                 {
-                    ProductId = productId,
+                    ProductId = procuctId,
                     Html = i.HTML,
                     VideoUrl = i.Url,
-                    Title = i.Title, 
+                    Title = i.Title,
                     Description = i.Description
                 }).FirstOrDefaultAsync();
         }
