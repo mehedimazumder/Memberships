@@ -1,5 +1,6 @@
 ﻿.pc-headline {
     border-bottom: none;
+    margin-bottom: 10px;
 }
 .pc-headline h2, .pc-headline h3, .pc-headline h4 {
     margin: 0px 0px -2px;
@@ -10,3 +11,4 @@
 .pc-headline h2 {
     font-size: 22px;
 }
+
