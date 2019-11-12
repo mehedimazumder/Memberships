@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Memberships.Models;
 
 namespace Memberships.Controllers
 {
@@ -12,7 +13,12 @@ namespace Memberships.Controllers
         // GET: ProductContent
         public async Task<ActionResult> Index(int id)
         {
-            return View();
+            var model = new ProductSectionModel
+            {
+                Title = "C#",
+                Sections = new List<ProductSection>()
+            };
+            return View(model);
         }
     }
 }
