@@ -43,5 +43,40 @@ namespace Memberships.Extensions
 
             return model;
         }
+
+        public static async Task<IEnumerable<ProductItemRow>> GetProductItemRowAsync(int productId, int sectionId,
+            int itemTypeId, string userId, ApplicationDbContext db)
+        {
+            if(db == null) db = ApplicationDbContext.Create();
+
+            var today = DateTime.Now.Date;
+
+            var items = await (from i in db.Items
+                join it in db.ItemTypes on i.ItemTypeId equals it.Id
+                join pi in db.ProductItems on i.Id equals pi.ItemId
+                join sp in db.SubscriptionProducts on pi.ProductId equals sp.ProductId
+                join us in db.UserSubscriptions on sp.SubscriptionId equals us.SubscriptionId
+                where i.SectionId.Equals(sectionId) &&
+                      i.ItemTypeId.Equals(itemTypeId) &&
+                      pi.ProductId.Equals(productId) &&
+                      us.UserId.Equals(userId)
+                orderby i.PartId
+                select new ProductItemRow
+                {
+                    ItemId = i.Id,
+                    Description = i.Description,
+                    Title = i.Title,
+                    Link = "/ProductContent/Content/" + pi.ProductId + "/" + i.Id,
+                    ImageUrl = i.ImageUrl,
+                    ReleaseDate = DbFunctions.CreateDateTime(us.StartDate.Value.Year,
+                        us.StartDate.Value.Month, us.StartDate.Value.Day + i.WaitDays, 0, 0, 0),
+                    IsAvailable = DbFunctions.CreateDateTime(today.Year, today.Month, today.Day, 0, 0, 0)
+                                  >= DbFunctions.CreateDateTime(us.StartDate.Value.Year,
+                                      us.StartDate.Value.Month, us.StartDate.Value.Day + i.WaitDays, 0, 0, 0)
+
+                }).ToListAsync();
+
+            return items;
+        }
     }
 }
