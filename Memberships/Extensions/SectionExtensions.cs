@@ -13,7 +13,7 @@ namespace Memberships.Extensions
     public static class SectionExtensions
     {
         public static async Task<ProductSectionModel> GetProductSectionsAsync(int productId,
-            int sectionId)
+            string userId)
         {
             var db = new ApplicationDbContext();
 
