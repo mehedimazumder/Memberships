@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Memberships.Entities;
+using Memberships.Models;
 
 namespace Memberships.Extensions
 {
@@ -54,6 +55,28 @@ namespace Memberships.Extensions
             }
             catch  { }
            
+        }
+
+        public static async Task<bool> RegisterUserSubscriptionCode(string userId, string code)
+        {
+            try
+            {
+                var db = ApplicationDbContext.Create();
+                var subscriptionid = await db.Subscriptions.GetSubscriptionIdByRegistrationCode(code);
+
+                if (subscriptionid <= 0) return false;
+
+                await db.UserSubscriptions.Register(subscriptionid, userId);
+
+                if (db.ChangeTracker.HasChanges())
+                    await db.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
