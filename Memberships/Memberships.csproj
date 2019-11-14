@@ -238,6 +238,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\carret.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\navbar.css" />
     <Content Include="Content\ProductContent.css" />
     <Content Include="Content\RegisterCode.css" />
@@ -260,6 +261,7 @@
     <Content Include="Areas\Admin\Views\Sections\Index.cshtml" />
     <Content Include="Scripts\carret.js" />
     <Content Include="Scripts\JWPlayer.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\RegisterCode.js" />
     <Content Include="Scripts\RegisterUser.js" />
     <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
@@ -371,6 +373,7 @@
     <Content Include="Views\ProductContent\Content.cshtml" />
     <Content Include="Views\Shared\_RegisterCodePartial.cshtml" />
     <Content Include="Views\Shared\_RegisterUserPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPanelPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
