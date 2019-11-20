@@ -19,9 +19,14 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.GlyphLink("Account", "Login", "Log In", "user", "loginLink")
-            <div class="hidden-xs" login-panel-partial>
-                @Html.Partial("_LoginPanelPartial", new LoginViewModel())
+            @Html.GlyphLink("Account", "Login", "Log in", "user", "", "loginLink")
+            <div class="hidden-xs" data-login-panel-partial>
+                @Html.Partial("_LoginPanelPartial", new LoginViewModel
+                {
+                    Email = "",
+                    Password = "",
+                    RememberMe = false
+                })
             </div>
         </li>
     </ul>
