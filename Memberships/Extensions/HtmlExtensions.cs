@@ -11,7 +11,7 @@ namespace Memberships.Extensions
         public static MvcHtmlString GlyphLink(this HtmlHelper htmlHelper,
             string controller, string action, string text,
             string glyphicon, string cssClasses = "", string id = "",
-            Dictionary<string, string> attributes = null)
+            Dictionary<string, string> attributes = null)   //Dictionary for forgot Password
         {
             // declare a span for the glyphicon
             var glyph = string.Format("<span class='glyphicon glyphicon-{0}'></span>",
@@ -27,7 +27,7 @@ namespace Memberships.Extensions
 
             if (attributes != null)
                 foreach (var attribute in attributes)
-                    anchor.MergeAttribute(attribute.Key, attribute.Value);
+                    anchor.MergeAttribute(attribute.Key, attribute.Value); //marge key & value in anchor tag
 
             anchor.InnerHtml = string.Format("{0} {1}", glyph, text);
             anchor.AddCssClass(cssClasses);
